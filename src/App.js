@@ -1,24 +1,34 @@
-import logo from './logo.svg';
 import './App.css';
+import { Form } from "./components/Form";
+import  Todos  from "./components/Todos";
+import { useDispatch,useSelector } from 'react-redux';
+import {deleteAll} from './redux/todoapp/actions';
+import Notes from './components/Notes';
+
 
 function App() {
+  const dispatch = useDispatch();
+  const todos = useSelector((state)=> state.operationsReducer);
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+   <div className="wrraper">
+    <br></br>
+    <h1 className="text-center">CARDS-APP USING REACT-REDUX </h1>
+    <Form />
+    <div className="wrraper2">
+      <div >
+      <Todos />
+      </div>
+      <div>
+    <Notes />
     </div>
+    </div>
+    
+    <div className='wrapper'>
+      <div>
+    {todos.length > 0&& (<button style={{textAlign:'center'}} className='btn wrraper btn-danger btn-md delete-all' onClick={()=>dispatch(deleteAll())}>DELETE ALL</button>)}
+    </div>
+    </div>
+   </div>
   );
 }
 
