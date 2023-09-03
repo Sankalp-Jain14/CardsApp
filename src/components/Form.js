@@ -8,7 +8,7 @@ export const Form=()=> {
     const dispatch = useDispatch();
 
     const[todoValue,setTodoValue] = useState('');
-    const[NotesValue,setNotesValue] = useState('');
+    // const[NotesValue,setNotesValue] = useState('');
 
     const handleSubmit=(e)=>{
          e.preventDefault();
@@ -28,18 +28,18 @@ export const Form=()=> {
         let time = date.getTime();
         let todoObj= {
            id:time,
-           todo: NotesValue,
+           todo: todoValue,
            completed:false
         }
-        setNotesValue('');
+        setTodoValue('');
         dispatch(addNotes(todoObj))
    }
    return (
-    <div>
+    <div className='wrapper'>
       {/* <form className="form-group custom-form" onSubmit = {handleSubmit}> */}
         <label >Add your todo-items</label>
         <div className='input-and-btn'>
-            <input type="text" className='form-control' required 
+            <input type="text" className='form-control' required  
             value={todoValue} onChange={(e)=>setTodoValue(e.target.value)} />
             <button type="submit" className="btn btn-secondary btn-md" onClick={handleSubmit} >ADD</button>
             <button type="submit" className="btn btn-secondary btn-md" onClick={handleSubmitNotes} >ADD Notes</button>
